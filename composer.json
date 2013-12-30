@@ -1,5 +1,5 @@
 {
-    "name": "gimler/symfony-rest-edition",
+    "name": "elmpp/symfony-rest-edition",
     "license": "MIT",
     "type": "project",
     "description": "The \"Symfony REST Edition\" distribution",
@@ -12,6 +12,8 @@
         "symfony/icu": "1.0.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "hautelook/alice-bundle": "0.1.*",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.3.*",
         "symfony/swiftmailer-bundle": "2.3.*",

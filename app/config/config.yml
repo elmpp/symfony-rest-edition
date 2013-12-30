@@ -104,3 +104,7 @@ liip_cache_control:
 bazinga_hateoas: ~
 
 bazinga_rest_extra: ~
+
+hautelook_alice:
+    locale: en_GB
+    seed: 1

@@ -1,0 +1,18 @@
+BorderForce\Drt\FlightsBundle\Entity\Airline:
+  airline1:
+    name: <firstName()><lastName()>
+    colour: <randomElement(['red','blue','green','brown'])>
+  airline2:
+    name: <firstName()><lastName()>
+    colour: <randomElement(['red','blue','green','brown'])>
+  airline3:
+    name: <firstName()><lastName()>
+    colour: <randomElement(['red','blue','green','brown'])>
+  
+BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
+  forecastflight{1..12}:
+    name: <username()>
+    code: <randomNumber(12)>
+    test: <firstName()>
+    airline: @airline*
+  

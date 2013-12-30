@@ -1,0 +1,7 @@
+parameters:
+#    border_force_drt_flights.example.class: BorderForce\Drt\FlightsBundle\Example
+
+services:
+#    border_force_drt_flights.example:
+#        class: %border_force_drt_flights.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

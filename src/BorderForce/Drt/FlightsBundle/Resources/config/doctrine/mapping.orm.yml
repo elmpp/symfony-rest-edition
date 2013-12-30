@@ -1,0 +1,63 @@
+BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
+  type: entity
+  table: forecast_flights
+#  indexes:
+#    name_index:
+#      columns: [ name ]
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+#    ref: { type: char(6), primary: true, notnull: true }
+    name:  { type: string(50), notnull: true }
+    code:  { type: string(12), notnull: true }
+    test: { type: string(50), notnull: true }
+  manyToOne:
+    airline:
+      targetEntity: Airline
+      inversedBy: forecast_flights
+      joinColumn:
+        name: airline_id
+        referencedColumnName: id
+#    last_name:  { type: string(50), notnull: true }
+#    birthdate:    { type: timestamp, notnull: true }
+#    hiredate:     { type: timestamp, notnull: true }
+#    email:         { type: string(100), notnull: true }
+#  oneToOne:
+#    company:
+#      targetEntity: Airline
+#      joinColumn:
+#        name: airline_id
+#        referencedColumnName: id
+#  oneToMany:
+#    phonenumbers:
+#      targetEntity: Phonenumber
+#      mappedBy: user
+#      cascade: ["persist", "merge"]
+#  manyToMany:
+#    groups:
+#      targetEntity: Group
+#      joinTable:
+#        name: cms_users_groups
+#        joinColumns:
+#          user_id:
+#            referencedColumnName: id
+#        inverseJoinColumns:
+#          group_id:
+#            referencedColumnName: id
+#  lifecycleCallbacks:
+#    prePersist: [ doStuffOnPrePersist, doOtherStuffOnPrePersistToo ]
+#    postPersist: [ doStuffOnPostPersist ]
+BorderForce\Drt\FlightsBundle\Entity\Airline:
+  type: entity
+  table: airlines
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:  { type: string(50), notnull: true }
+    colour: { type: string(50), notnull: true }
