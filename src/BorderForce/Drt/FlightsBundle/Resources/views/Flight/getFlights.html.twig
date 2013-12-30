@@ -1,0 +1,32 @@
+{% extends "BorderForceDrtFlightsBundle::layout.html.twig" %}
+
+{% block title "Symfony - Flights" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1 class="title">{{ 'flight.list.headline'|trans({}, 'BorderForceDrtFlightsBundle') }}</h1>
+
+    <p>
+    </p>
+
+    <ul id="flight-list">
+{#        {% for id, flight in data.flights %}#}
+        {% for id, flight in data %}
+        <li>
+{#            <a href="{{ path('get_flight', {'id': id}) }}">{{ flight }}</a>#}
+{#            [<a href="{{ path('edit_flights', {'id': id}) }}">{{ 'flight.edit.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
+{#            [<a href="{{ path('remove_flights', {'id': id}) }}">{{ 'flight.remove.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
+            {{ flight.id }} | {{ flight.airline.name }} | {{ flight.flightNumber }} | {{ flight.passengers }}
+          
+        </li>
+        {% else %}
+        <li>{{ 'flight.list.empty'|trans({}, 'BorderForceDrtFlightsBundle') }}</li>
+        {% endfor %}
+    </ul>
+    <p>
+{#        <a href="{{ path('new_flight') }}">{{ 'flight.new.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>#}
+    </p>
+{% endblock %}
+
+{% set code = code(_self) %}

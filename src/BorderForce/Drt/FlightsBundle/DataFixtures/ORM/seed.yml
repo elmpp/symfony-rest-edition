@@ -1,14 +1,25 @@
 BorderForce\Drt\FlightsBundle\Entity\Airline:
   airline1:
-    name: <firstName()><lastName()>
-    colour: <randomElement(['red','blue','green','brown'])>
+    name: British Airlines
+    colour: White
+#    colour: <randomElement(['red','blue','green','brown'])>
   airline2:
-    name: <firstName()><lastName()>
-    colour: <randomElement(['red','blue','green','brown'])>
+    name: Emirates
+    colour: Red
   airline3:
-    name: <firstName()><lastName()>
-    colour: <randomElement(['red','blue','green','brown'])>
+    name: KLM
+    colour: Orange
   
+BorderForce\Drt\FlightsBundle\Entity\Flight:
+  flight{1..12}:
+    flightNumber:  <randomLetter()><randomLetter()><randomLetter()><randomNumber(9)>
+    origin: <randomElement(['boston', 'dubai', 'washington', 'norbury', 'vienna', 'ulverston', 'barrow-in-furnace', 'amsterdam', 'berlin', 'frankfurt'])>
+    touchdownEstimated: <dateTimeBetween('now', '2 months')>
+    touchdown: <dateTimeBetween($touchdownEstimated, '2 months 1 hour')>
+    choxEstimated:  <dateTimeBetween($touchdownEstimated, '2 months 8 minutes')>
+    chox:  <dateTimeBetween($choxEstimated, '2 months 8 minutes 30 seconds')>
+    passengers: 80%? <numberBetween(100, 500)>
+    airline: @airline*
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   forecastflight{1..12}:
     name: <username()>

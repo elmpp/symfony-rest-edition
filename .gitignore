@@ -6,3 +6,4 @@ nbproject
 /vendor/
 /bin/
 /composer.phar
+/src/BorderForce/Drt/FlightsBundle/Entity/*~

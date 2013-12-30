@@ -1,0 +1,20 @@
+flight:
+  list:
+    link: back to flight list
+    headline: Available flights
+    empty: No flights found
+  new:
+    link: create new flight
+    headline: Create new flight
+    submit: add flight
+  edit:
+    link: edit
+    headline: Edit flight %id%
+    submit: update flight
+  remove:
+    link: remove
+  offset: offset
+  limit: limit
+api:
+  doc:
+    link: API documentation

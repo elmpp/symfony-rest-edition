@@ -99,7 +99,7 @@ class Airline
      * @param \BorderForce\Drt\FlightsBundle\Entity\ForecastFlights $forecastFlights
      * @return Airline
      */
-    public function addForecastFlight(\BorderForce\Drt\FlightsBundle\Entity\ForecastFlights $forecastFlights)
+    public function addForecastFlight(\BorderForce\Drt\FlightsBundle\Entity\ForecastFlight $forecastFlights)
     {
         $this->forecastFlights[] = $forecastFlights;
 
@@ -111,7 +111,7 @@ class Airline
      *
      * @param \BorderForce\Drt\FlightsBundle\Entity\ForecastFlights $forecastFlights
      */
-    public function removeForecastFlight(\BorderForce\Drt\FlightsBundle\Entity\ForecastFlights $forecastFlights)
+    public function removeForecastFlight(\BorderForce\Drt\FlightsBundle\Entity\ForecastFlight $forecastFlights)
     {
         $this->forecastFlights->removeElement($forecastFlights);
     }

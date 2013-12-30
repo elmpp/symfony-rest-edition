@@ -1,3 +1,26 @@
+BorderForce\Drt\FlightsBundle\Entity\Flight:
+  type: entity
+  table: flights
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    flightNumber:  { type: string(12), nullable: false }
+    origin:  { type: string(50), nullable: false }
+    touchdownEstimated:  { type: datetime, nullable: true }
+    touchdown:  { type: datetime, nullable: true }
+    choxEstimated:  { type: datetime, nullable: true }
+    chox:  { type: datetime, nullable: true }
+    passengers: { type: integer(8), nullable: true }
+  manyToOne:
+    airline:
+      targetEntity: Airline
+      inversedBy: flights
+      joinColumn:
+        name: airline_id
+        referencedColumnName: id
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   type: entity
   table: forecast_flights
@@ -10,10 +33,10 @@ BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
       generator:
         strategy: AUTO
   fields:
-#    ref: { type: char(6), primary: true, notnull: true }
-    name:  { type: string(50), notnull: true }
-    code:  { type: string(12), notnull: true }
-    test: { type: string(50), notnull: true }
+#    ref: { type: char(6), primary: true, nullable: true }
+    name:  { type: string(50), nullable: true }
+    code:  { type: string(12), nullable: true }
+    test: { type: string(50), nullable: true }
   manyToOne:
     airline:
       targetEntity: Airline
@@ -21,10 +44,10 @@ BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
       joinColumn:
         name: airline_id
         referencedColumnName: id
-#    last_name:  { type: string(50), notnull: true }
-#    birthdate:    { type: timestamp, notnull: true }
-#    hiredate:     { type: timestamp, notnull: true }
-#    email:         { type: string(100), notnull: true }
+#    last_name:  { type: string(50), nullable: true }
+#    birthdate:    { type: timestamp, nullable: true }
+#    hiredate:     { type: timestamp, nullable: true }
+#    email:         { type: string(100), nullable: true }
 #  oneToOne:
 #    company:
 #      targetEntity: Airline
@@ -59,5 +82,5 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
       generator:
         strategy: AUTO
   fields:
-    name:  { type: string(50), notnull: true }
-    colour: { type: string(50), notnull: true }
+    name:  { type: string(50), nullable: true }
+    colour: { type: string(50), nullable: true }
