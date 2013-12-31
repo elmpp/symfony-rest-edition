@@ -2,7 +2,6 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
   airline1:
     name: British Airlines
     colour: White
-#    colour: <randomElement(['red','blue','green','brown'])>
   airline2:
     name: Emirates
     colour: Red
@@ -11,17 +10,63 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
     colour: Orange
   
 BorderForce\Drt\FlightsBundle\Entity\Flight:
-  flight{1..12}:
-    flightNumber:  <randomLetter()><randomLetter()><randomLetter()><randomNumber(9)>
-    origin: <randomElement(['boston', 'dubai', 'washington', 'norbury', 'vienna', 'ulverston', 'barrow-in-furnace', 'amsterdam', 'berlin', 'frankfurt'])>
-    touchdownEstimated: <dateTimeBetween('now', '2 months')>
-    touchdown: <dateTimeBetween($touchdownEstimated, '2 months 1 hour')>
-    choxEstimated:  <dateTimeBetween($touchdownEstimated, '2 months 8 minutes')>
-    chox:  <dateTimeBetween($choxEstimated, '2 months 8 minutes 30 seconds')>
-    passengers: 80%? <numberBetween(100, 500)>
-    airline: @airline*
+  flight1:
+    flightNumber:  man123456789
+    origin: 'manchester'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 500
+    airline: @airline1
+  flight2:
+    flightNumber:  lee123456789
+    origin: 'leeds'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 400
+    airline: @airline1
+  flight3:
+    flightNumber:  dub123456789
+    origin: 'dubai'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 300
+    airline: @airline2
+  flight4:
+    flightNumber:  kur123456789
+    origin: 'kurachi'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 200
+    airline: @airline2
+  flight5:
+    flightNumber:  ams123456789
+    origin: 'amsterdam'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 100
+    airline: @airline3
+  flight6:
+    flightNumber:  rot123456789
+    origin: 'rotterdam'
+    touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
+    touchdown: <dateTimeAt('2014-10-05 11:26:47')>
+    choxEstimated:  <dateTimeAt('2014-10-05 11:28:47')>
+    chox:  <dateTimeAt('2014-10-05 11:30:47')>
+    passengers: 50
+    airline: @airline3
+  
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
-  forecastflight{1..12}:
+  forecastflight{1..6}:
     name: <username()>
     code: <randomNumber(12)>
     test: <firstName()>

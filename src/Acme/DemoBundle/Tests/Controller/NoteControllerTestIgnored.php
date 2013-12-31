@@ -6,7 +6,7 @@ use Bazinga\Bundle\RestExtraBundle\Test\WebTestCase;
 use FOS\RestBundle\Util\Codes;
 use Symfony\Component\BrowserKit\Client;
 
-class NoteControllerTest extends WebTestCase
+class NoteControllerTestIgnored extends WebTestCase
 {
     public function testGetNotes()
     {

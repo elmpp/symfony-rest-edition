@@ -5,14 +5,15 @@ namespace BorderForce\Drt\FlightsBundle\DataFixtures;
 use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Nelmio\Alice\Fixtures;
 
-class TestLoader extends DataFixtureLoader
+class SeedDataLoader extends DataFixtureLoader
 {
     /**
      * {@inheritDoc}
      */
     protected function getFixtures()
     {
-      if ($this->container->get('http_kernel')->getEnvironment() == 'test') {
+
+      if ($this->container->getParameter('kernel.environment') == 'test') {
         return  array(
           __DIR__ . '/seed_test.yml',
         );
@@ -23,5 +24,9 @@ class TestLoader extends DataFixtureLoader
         );
       }
         
+    }
+    
+    public function dateTimeAt($dateTimeString) {
+      return new \DateTime($dateTimeString);
     }
 }

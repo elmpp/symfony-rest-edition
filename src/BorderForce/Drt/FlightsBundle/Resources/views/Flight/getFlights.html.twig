@@ -12,12 +12,29 @@
 
     <ul id="flight-list">
 {#        {% for id, flight in data.flights %}#}
+      <li>
+id | 
+airline.name | 
+flightNumber | 
+touchdownEstimated | 
+touchdown | 
+choxEstimated | 
+chox | 
+passengers       
+      </li>
         {% for id, flight in data %}
         <li>
 {#            <a href="{{ path('get_flight', {'id': id}) }}">{{ flight }}</a>#}
 {#            [<a href="{{ path('edit_flights', {'id': id}) }}">{{ 'flight.edit.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
 {#            [<a href="{{ path('remove_flights', {'id': id}) }}">{{ 'flight.remove.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
-            {{ flight.id }} | {{ flight.airline.name }} | {{ flight.flightNumber }} | {{ flight.passengers }}
+{{ flight.id }} | 
+{{ flight.airline.name }} | 
+{{ flight.flightNumber }} | 
+{{ flight.touchdownEstimated|date('d-m-Y H:i:s') }} | 
+{{ flight.touchdown|date('d-m-Y H:i:s') }} | 
+{{ flight.choxEstimated|date('d-m-Y H:i:s') }} | 
+{{ flight.chox|date('d-m-Y H:i:s') }} | 
+{{ flight.passengers }}
           
         </li>
         {% else %}

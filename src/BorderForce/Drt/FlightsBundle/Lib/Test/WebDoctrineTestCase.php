@@ -39,7 +39,6 @@ abstract class WebDoctrineTestCase extends WebTestCase
             ->get('doctrine.orm.entity_manager');
  
         static::$application = new \Symfony\Bundle\FrameworkBundle\Console\Application(static::$kernel);
-         
         static::$application->setAutoExit(false);
         $this->runConsole("doctrine:schema:drop", array("--force" => true));
         $this->runConsole("doctrine:schema:create");
@@ -63,10 +62,10 @@ abstract class WebDoctrineTestCase extends WebTestCase
         $registry = $container->get('doctrine');
         $om = $registry->getManager();
         $connection = $om->getConnection();
-         
+
         if ($connection->getDriver() instanceOf SqliteDriver) {
             $params = $connection->getParams();
-            $name = isset($params['path']) ? $params['path'] : $params['dbname'];
+            $name = isset($params['path']) ? $params['path'] : $params['dbname'];            
             $filename = pathinfo($name, PATHINFO_BASENAME);
             $backup = $container->getParameter('kernel.cache_dir') . '/'.$filename;
  
@@ -91,7 +90,7 @@ abstract class WebDoctrineTestCase extends WebTestCase
             if (!file_exists($backup)) {
                 copy($name, $backup);
             }
- 
+//static::$kernel->getContainer()->get('logger')->debug($name);
             copy($backup, $name);
             return true;
         }
