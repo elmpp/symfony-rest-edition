@@ -12,8 +12,16 @@ class TestLoader extends DataFixtureLoader
      */
     protected function getFixtures()
     {
+      if ($this->container->get('http_kernel')->getEnvironment() == 'test') {
         return  array(
-            __DIR__ . '/seed.yml',
+          __DIR__ . '/seed_test.yml',
         );
+      }
+      else {
+        return  array(
+          __DIR__ . '/seed.yml',
+        );
+      }
+        
     }
 }
