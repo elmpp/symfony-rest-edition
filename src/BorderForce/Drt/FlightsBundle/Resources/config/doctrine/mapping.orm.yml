@@ -3,11 +3,10 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
   table: flights
   id:
     id:
-      type: integer
-      generator:
-        strategy: AUTO
+      type: string
+      length: 12
   fields:
-    flightNumber:  { type: string(12), nullable: false }
+#    flightNumber:  { type: string(12), nullable: false }
     origin:  { type: string(50), nullable: false }
     touchdownEstimated:  { type: datetime, nullable: true }
     touchdown:  { type: datetime, nullable: true }

@@ -276,4 +276,17 @@ class Flight
     {
         return $this->origin;
     }
+
+    /**
+     * Set id
+     *
+     * @param string $id
+     * @return Flight
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

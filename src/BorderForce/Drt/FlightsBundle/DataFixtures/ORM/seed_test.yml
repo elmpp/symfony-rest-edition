@@ -11,7 +11,6 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
   
 BorderForce\Drt\FlightsBundle\Entity\Flight:
   flight1:
-    flightNumber:  man123456789
     origin: 'manchester'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -19,6 +18,7 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 500
     airline: @airline1
+    id:  <flightNumber($origin)>
   flight2:
     flightNumber:  lee123456789
     origin: 'leeds'
@@ -28,8 +28,8 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 400
     airline: @airline1
+    id:  <flightNumber($origin)>
   flight3:
-    flightNumber:  dub123456789
     origin: 'dubai'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -37,6 +37,7 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 300
     airline: @airline2
+    id:  <flightNumber($origin)>
   flight4:
     flightNumber:  kur123456789
     origin: 'kurachi'
@@ -46,8 +47,8 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 200
     airline: @airline2
+    id:  <flightNumber($origin)>
   flight5:
-    flightNumber:  ams123456789
     origin: 'amsterdam'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -55,8 +56,8 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 100
     airline: @airline3
+    id:  <flightNumber($origin)>
   flight6:
-    flightNumber:  rot123456789
     origin: 'rotterdam'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -64,6 +65,7 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 50
     airline: @airline3
+    id:  <flightNumber($origin)>
   
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   forecastflight{1..6}:

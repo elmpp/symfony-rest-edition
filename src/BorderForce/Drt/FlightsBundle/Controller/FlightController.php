@@ -2,7 +2,7 @@
 
 namespace BorderForce\Drt\FlightsBundle\Controller;
 
-//use Acme\DemoBundle\Form\NoteType;
+use BorderForce\Drt\FlightsBundle\Form\FlightType;
 //use Acme\DemoBundle\Model\Note;
 //use Acme\DemoBundle\Model\NoteCollection;
 
@@ -58,11 +58,67 @@ class FlightController extends FOSRestController
 
         $flights = $this->getDoctrine()->getRepository('BorderForceDrtFlightsBundle:Flight')
           ->findAll();
-//        $notes = $session->get(self::SESSION_CONTEXT_NOTE, array());
-//        $notes = array_slice($notes, $start, $limit, true);
 
         return $flights;
-//        return new NoteCollection($notes, $offset, $limit);
     }
+    
+    /**
+     * Update existing flight from the submitted data or create a new flight at a specific location.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "Acme\DemoBundle\Form\NoteType",
+     *   statusCodes = {
+     *     201 = "Returned when a new resource is created",
+     *     204 = "Returned when successful",
+     *     400 = "Returned when the form has errors",
+     *   }
+     * )
+     *
+     * @Annotations\View(
+     *   template="BorderForceDrtFlightsBundle:flight:editFlight.html.twig",
+     *   templateVar="form"
+     * )
+     *
+     * @param Request $request the request object
+     * @param int     $id      the flightnumber id
+     *
+     * @return FormTypeInterface|RouteRedirectView
+     *
+     * @throws NotFoundHttpException when flight not exist
+     */
+    public function putFlightAction(Request $request, $id)
+    {
+        // Does the flight exist?
+        $em       = $this->getDoctrine()->getManager();
+        $existant = $em->getRepository('BorderForceDrtFlightsBundle:Flight')
+          ->find($id);
+        
+        if ($existant) {
+          $flight = $existant;
+          $statusCode = Codes::HTTP_NO_CONTENT;
+        }
+        else {
+          $flight = new \BorderForce\Drt\FlightsBundle\Entity\Flight;
+          $flight->setId($id);
+          $statusCode = Codes::HTTP_CREATED;
+        }
 
+        $form = $this->createForm(new FlightType(), $flight);
+//        $form->submit($request);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+          $data = $form->getData();
+//$this->container->get('logger')->debug(\Doctrine\Common\Util\Debug::dump($data));
+//\Doctrine\Common\Util\Debug::dump($data);
+//var_dump($request->request->all());
+//var_dump($id);
+          $em->persist($flight);
+          $em->flush();
+          return $this->routeRedirectView('get_flights', array(), $statusCode);
+        }
+
+        return $form;
+    }
+    
 }

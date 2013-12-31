@@ -29,4 +29,8 @@ class SeedDataLoader extends DataFixtureLoader
     public function dateTimeAt($dateTimeString) {
       return new \DateTime($dateTimeString);
     }
+    
+    public function flightNumber($origin) {
+      return substr($origin, 0, 3) . '123456789';
+    }
 }
