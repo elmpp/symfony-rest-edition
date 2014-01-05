@@ -20,9 +20,14 @@ class Flight
     private $flightNumber;
 
     /**
+     * @var \DateTime
+     */
+    private $scheduledDate;
+
+    /**
      * @var string
      */
-    private $from;
+    private $origin;
 
     /**
      * @var \DateTime
@@ -64,6 +69,16 @@ class Flight
     {
         return $this->id;
     }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * Set flightNumber
@@ -89,26 +104,49 @@ class Flight
     }
 
     /**
-     * Set from
+     * Set scheduledDate
      *
-     * @param string $from
+     * @param \DateTime $scheduledDate
      * @return Flight
      */
-    public function setFrom($from)
+    public function setScheduledDate($scheduledDate)
     {
-        $this->from = $from;
+        $this->scheduledDate = $scheduledDate;
 
         return $this;
     }
 
     /**
-     * Get from
+     * Get scheduledDate
+     *
+     * @return \DateTime 
+     */
+    public function getScheduledDate()
+    {
+        return $this->scheduledDate;
+    }
+
+    /**
+     * Set origin
+     *
+     * @param string $origin
+     * @return Flight
+     */
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Get origin
      *
      * @return string 
      */
-    public function getFrom()
+    public function getOrigin()
     {
-        return $this->from;
+        return $this->origin;
     }
 
     /**
@@ -248,45 +286,5 @@ class Flight
     {
         return $this->airline;
     }
-    /**
-     * @var string
-     */
-    private $origin;
 
-
-    /**
-     * Set origin
-     *
-     * @param string $origin
-     * @return Flight
-     */
-    public function setOrigin($origin)
-    {
-        $this->origin = $origin;
-
-        return $this;
-    }
-
-    /**
-     * Get origin
-     *
-     * @return string 
-     */
-    public function getOrigin()
-    {
-        return $this->origin;
-    }
-
-    /**
-     * Set id
-     *
-     * @param string $id
-     * @return Flight
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 }

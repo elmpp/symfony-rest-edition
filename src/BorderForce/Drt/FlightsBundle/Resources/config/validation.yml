@@ -1,0 +1,5 @@
+BorderForce\Drt\FlightsBundle\Entity\Flight:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: [ flightNumber, scheduledDate ]
+        message: "this flight already exists for this day."

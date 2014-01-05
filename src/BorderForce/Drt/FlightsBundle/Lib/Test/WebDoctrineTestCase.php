@@ -21,6 +21,8 @@ abstract class WebDoctrineTestCase extends WebTestCase
     {
         parent::setUp();
  
+        static::$kernel = static::createKernel();
+        static::$kernel->boot();
         static::$client = static::createClient();
  
         if (!$this->useCachedDatabase()) {
@@ -28,7 +30,7 @@ abstract class WebDoctrineTestCase extends WebTestCase
             $this->loadFixtures();  
         }
     }
- 
+    
     /**
      * Initialize database
      */

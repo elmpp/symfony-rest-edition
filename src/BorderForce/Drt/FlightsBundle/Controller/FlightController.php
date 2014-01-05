@@ -3,8 +3,7 @@
 namespace BorderForce\Drt\FlightsBundle\Controller;
 
 use BorderForce\Drt\FlightsBundle\Form\FlightType;
-//use Acme\DemoBundle\Model\Note;
-//use Acme\DemoBundle\Model\NoteCollection;
+use BorderForce\Drt\FlightsBundle\Entity\Flight;
 
 use FOS\RestBundle\Util\Codes;
 
@@ -63,7 +62,7 @@ class FlightController extends FOSRestController
     }
     
     /**
-     * Update existing flight from the submitted data or create a new flight at a specific location.
+     * Update existing flight from the submitted data
      *
      * @ApiDoc(
      *   resource = true,
@@ -90,8 +89,9 @@ class FlightController extends FOSRestController
     public function putFlightAction(Request $request, $id)
     {
         // Does the flight exist?
-        $em       = $this->getDoctrine()->getManager();
-        $existant = $em->getRepository('BorderForceDrtFlightsBundle:Flight')
+        $em          = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('BorderForceDrtFlightsBundle:Flight');
+        $existant    = $repository
           ->find($id);
         
         if ($existant) {
@@ -99,14 +99,15 @@ class FlightController extends FOSRestController
           $statusCode = Codes::HTTP_NO_CONTENT;
         }
         else {
-          $flight = new \BorderForce\Drt\FlightsBundle\Entity\Flight;
-          $flight->setId($id);
-          $statusCode = Codes::HTTP_CREATED;
+          return $this->routeRedirectView('get_flights', array(), Codes::HTTP_UNPROCESSABLE_ENTITY);
+          die;
         }
 
-        $form = $this->createForm(new FlightType(), $flight);
-//        $form->submit($request);
-        $form->handleRequest($request);
+        $form = $this->createForm(new FlightType(), $flight, array(
+          'em' => $this->getDoctrine()->getManager()
+        ));
+        $form->submit($request);
+//        $form->handleRequest($request);
         if ($form->isValid()) {
           $data = $form->getData();
 //$this->container->get('logger')->debug(\Doctrine\Common\Util\Debug::dump($data));
@@ -115,10 +116,120 @@ class FlightController extends FOSRestController
 //var_dump($id);
           $em->persist($flight);
           $em->flush();
-          return $this->routeRedirectView('get_flights', array(), $statusCode);
+          return $this->routeRedirectView('get_flight', array('id' => $data->getId()), $statusCode);
+        }
+        else {
+          var_dump($form->getErrorsAsString()); die;
         }
 
         return $form;
+    }
+    
+    /**
+     * Presents the form to use to create a new flight.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful"
+     *   }
+     * )
+     *
+     * @Annotations\View()
+     *
+     * @return FormTypeInterface
+     */
+    public function newFlightAction()
+    {
+        return $this->createForm(new FlightType(), new Flight, array('em' => $this->getDoctrine()->getManager()));
+    }
+    
+    /**
+     * Creates a new flight from the submitted data.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   input = "BorderForce\Drt\FlightsBundle\Form\FlightType",
+     *   statusCodes = {
+     *     201 = "Returned when new resource created successfully",
+     *     409 = "Returned when resource existing"
+     *   }
+     * )
+     *
+     * @Annotations\View(
+     *   template = "BorderForceDrtFlightsBundle:Flight:newFlight.html.twig",
+     *   statusCode = Codes::HTTP_BAD_REQUEST
+     * )
+     *
+     * @param Request $request the request object
+     *
+     * @return FormTypeInterface|RouteRedirectView
+     */
+    public function postFlightsAction(Request $request)
+    {
+      $em       = $this->getDoctrine()->getManager();
+//      $existant = $em->getRepository('BorderForceDrtFlightsBundle:Flight')
+//        ->find($id);
+      $flight = new Flight();
+//      $flight->setId(substr($request->get('origin'), 0, 3) . '123456789');
+      $form = $this->createForm(new FlightType(), $flight, array('em' => $this->getDoctrine()->getManager()));
+
+      $form->submit($request);
+      $data = $form->getData();
+      
+      if ($form->isValid()) {
+        $em->persist($flight);
+        $em->flush();
+          return $this->routeRedirectView('get_flights');
+      }
+      // If the validation failed due to existing resource, do our restful redirect
+      else {
+        $uniqueErrors = $form->getErrors();
+        if (count($uniqueErrors ===1 && stripos($uniqueErrors[0]->getMessage(), 'already exists'))) {
+          
+          $existing = $this->getDoctrine()->getRepository('BorderForceDrtFlightsBundle:Flight')
+            ->findByFlightNumberAndScheduledDate($data->getFlightNumber(), $data->getScheduledDate());
+          return $this->routeRedirectView('get_flight', array('id' => $existing->getId()), Codes::HTTP_CONFLICT);
+        }
+      }
+
+      return array(
+          'form' => $form
+      );
+    }
+    
+    /**
+     * Get a single flight.
+     *
+     * @ApiDoc(
+     *   output = "BorderForce\Drt\FlightsBundle\Model\Note",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the flight is not found"
+     *   }
+     * )
+     *
+     * @Annotations\View(templateVar="flight")
+     *
+     * @param Request $request the request object
+     * @param int     $id      the flight id
+     *
+     * @return array
+     *
+     * @throws NotFoundHttpException when flight not exist
+     */
+    public function getFlightAction(Request $request, $id)
+    {
+      $flight = $this->getDoctrine()->getRepository('BorderForceDrtFlightsBundle:Flight')
+        ->find($id);
+      if (!$flight) {
+        throw $this->createNotFoundException("Flight does not exist.");
+      }
+
+      $view = new View($flight);
+//      $view->getSerializationContext()->setGroups(array('Default', $group));
+
+      return $view;
     }
     
 }

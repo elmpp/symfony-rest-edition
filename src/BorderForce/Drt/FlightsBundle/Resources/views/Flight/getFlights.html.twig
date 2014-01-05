@@ -30,11 +30,12 @@ passengers
 {{ flight.id }} | 
 {{ flight.airline.name }} | 
 {{ flight.flightNumber }} | 
-{{ flight.touchdownEstimated|date('d-m-Y H:i:s') }} | 
-{{ flight.touchdown|date('d-m-Y H:i:s') }} | 
-{{ flight.choxEstimated|date('d-m-Y H:i:s') }} | 
-{{ flight.chox|date('d-m-Y H:i:s') }} | 
-{{ flight.passengers }}
+{{ flight.touchdownEstimated|date('d-m-Y H:i') }} | 
+{{ flight.touchdown|date('d-m-Y H:i') }} | 
+{{ flight.choxEstimated|date('d-m-Y H:i') }} | 
+{{ flight.chox|date('d-m-Y H:i') }} | 
+{{ flight.passengers }} |
+<a href="{{ path('get_flight', {'id': id}) }}">show</a>#}
           
         </li>
         {% else %}
@@ -42,7 +43,7 @@ passengers
         {% endfor %}
     </ul>
     <p>
-{#        <a href="{{ path('new_flight') }}">{{ 'flight.new.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>#}
+        <a href="{{ path('new_flight') }}">{{ 'flight.new.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>
     </p>
 {% endblock %}
 

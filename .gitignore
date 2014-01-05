@@ -8,3 +8,4 @@ nbproject
 /composer.phar
 /src/BorderForce/Drt/FlightsBundle/Entity/*~
 /data/test/*
+.idea

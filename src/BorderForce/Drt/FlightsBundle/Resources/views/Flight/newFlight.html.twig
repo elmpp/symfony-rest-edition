@@ -1,0 +1,26 @@
+{% extends "BorderForceDrtFlightsBundle::layout.html.twig" %}
+
+{% block title "Symfony - Flights" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1 class="title">{{ 'flight.new.headline'|trans({}, 'BorderForceDrtFlightsBundle') }}</h1>
+
+{#              <a href="{{ path('get_flight', {'id': id}) }}">{{ flight }}</a>#}
+{#              <a href="{{ path('get_flights') }}">all flights</a>#}
+{#            [<a href="{{ path('edit_flights', {'id': id}) }}">{{ 'flight.edit.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
+{#            [<a href="{{ path('remove_flights', {'id': id}) }}">{{ 'flight.remove.link'|trans({}, 'BorderForceDrtFlightsBundle') }}</a>]#}
+    
+  {%  if (form is defined) %}
+    <form action="{{ url('post_flights') }}" method="POST" {{ form_enctype(form) }}>
+
+        {{ form_widget(form) }}
+
+        <input type="submit" value="{% trans from 'BorderForceDrtFlightsBundle' %}flight.new.submit{% endtrans %}">
+    </form>
+    {% endif %}
+<a href="{{ path('get_flights') }}">all flights</a>
+{% endblock %}
+
+{% set code = code(_self) %}

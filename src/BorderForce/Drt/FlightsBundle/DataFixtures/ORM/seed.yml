@@ -13,14 +13,16 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
 BorderForce\Drt\FlightsBundle\Entity\Flight:
   flight{1..12}:
 #    flightNumber:  <randomLetter()><randomLetter()><randomLetter()><randomNumber(9)>
+#    scheduledDate: <dateBetweenRelative('2 years', '1 year', 'Y-m-d')>
+    scheduledDate: <dateTimeAt('2015-06-02')>
     origin (unique): <randomElement(['telford', 'chester', 'birmingham', 'london', 'kingston', 'newport', 'brixton', 'boston', 'dubai', 'washington', 'norbury', 'vienna', 'ulverston', 'barrow-in-furnace', 'amsterdam', 'berlin', 'frankfurt'])>
-    touchdownEstimated: <dateTimeBetween('now', '2 months')>
-    touchdown: <dateTimeBetween($touchdownEstimated, '2 months 1 hour')>
-    choxEstimated:  <dateTimeBetween($touchdownEstimated, '2 months 8 minutes')>
-    chox:  <dateTimeBetween($choxEstimated, '2 months 8 minutes 30 seconds')>
+    touchdownEstimated: <dateTimeBetweenRelative($scheduledDate, '18 hours')>
+    touchdown: <dateTimeBetweenRelative($touchdownEstimated, '+2 minutes')>
+    choxEstimated:  <dateTimeBetweenRelative($touchdown, '4 minutes')>
+    chox:  <dateTimeBetweenRelative($choxEstimated, '2 minutes')>
     passengers: 80%? <numberBetween(100, 500)>
     airline: @airline*
-    id: <flightNumber($origin)>
+    flightNumber: <flightNumber($origin)>
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   forecastflight{1..12}:
     name: <username()>

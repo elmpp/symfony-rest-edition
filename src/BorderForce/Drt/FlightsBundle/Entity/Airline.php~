@@ -125,4 +125,8 @@ class Airline
     {
         return $this->forecastFlights;
     }
+    
+    public function __toString() {
+      return (string) $this->name;
+    }
 }

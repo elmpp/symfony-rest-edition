@@ -11,6 +11,7 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
   
 BorderForce\Drt\FlightsBundle\Entity\Flight:
   flight1:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     origin: 'manchester'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -18,8 +19,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 500
     airline: @airline1
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('manchester')>
   flight2:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     flightNumber:  lee123456789
     origin: 'leeds'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
@@ -28,8 +30,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 400
     airline: @airline1
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('leeds')>
   flight3:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     origin: 'dubai'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -37,8 +40,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 300
     airline: @airline2
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('dubai')>
   flight4:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     flightNumber:  kur123456789
     origin: 'kurachi'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
@@ -47,8 +51,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 200
     airline: @airline2
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('kurachi')>
   flight5:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     origin: 'amsterdam'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -56,8 +61,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 100
     airline: @airline3
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('amsterdam')>
   flight6:
+    scheduledDate: <dateTimeAt('2014-10-05')>
     origin: 'rotterdam'
     touchdownEstimated: <dateTimeAt('2014-10-05 11:24:47')>
     touchdown: <dateTimeAt('2014-10-05 11:26:47')>
@@ -65,7 +71,7 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
     chox:  <dateTimeAt('2014-10-05 11:30:47')>
     passengers: 50
     airline: @airline3
-    id:  <flightNumber($origin)>
+    flightNumber:  <flightNumber('rotterdam')>
   
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   forecastflight{1..6}:

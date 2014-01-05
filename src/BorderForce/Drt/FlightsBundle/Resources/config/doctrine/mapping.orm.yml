@@ -1,17 +1,21 @@
 BorderForce\Drt\FlightsBundle\Entity\Flight:
   type: entity
+  repositoryClass: BorderForce\Drt\FlightsBundle\Entity\Repository\FlightRepository
   table: flights
   id:
     id:
-      type: string
+      type: integer
       length: 12
+      generator:
+        strategy: AUTO
   fields:
-#    flightNumber:  { type: string(12), nullable: false }
+    flightNumber:  { type: string(12), nullable: false }
+    scheduledDate: { type: date, format: 'Y-m-d', nullable: false }
     origin:  { type: string(50), nullable: false }
-    touchdownEstimated:  { type: datetime, nullable: true }
-    touchdown:  { type: datetime, nullable: true }
-    choxEstimated:  { type: datetime, nullable: true }
-    chox:  { type: datetime, nullable: true }
+    touchdownEstimated:  { type: datetime, nullable: true, format: 'yyyy-MM-dd' }
+    touchdown:  { type: datetime, nullable: true, format: 'yyyy-MM-dd' }
+    choxEstimated:  { type: datetime, nullable: true, format: 'yyyy-MM-dd' }
+    chox:  { type: datetime, nullable: true, format: 'yyyy-MM-dd' }
     passengers: { type: integer(8), nullable: true }
   manyToOne:
     airline:
@@ -20,6 +24,9 @@ BorderForce\Drt\FlightsBundle\Entity\Flight:
       joinColumn:
         name: airline_id
         referencedColumnName: id
+  uniqueConstraints:
+    flightNumberDate:
+      columns: [ flightNumber, scheduledDate ]
 BorderForce\Drt\FlightsBundle\Entity\ForecastFlight:
   type: entity
   table: forecast_flights
@@ -81,5 +88,5 @@ BorderForce\Drt\FlightsBundle\Entity\Airline:
       generator:
         strategy: AUTO
   fields:
-    name:  { type: string(50), nullable: true }
+    name:  { type: string(50), nullable: true, unique: true }
     colour: { type: string(50), nullable: true }
